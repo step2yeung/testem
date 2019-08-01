@@ -176,6 +176,9 @@ function initSocket(id) {
   socket = io.connect({ reconnectionDelayMax: 1000, randomizationFactor: 0 });
   patchEmitterForWildcard(socket);
 
+  console.log(`emitting browser-login from url ${window.location.href}`);
+  const e = new Error();
+  console.log(`${e.stack}`);
   socket.emit('browser-login', getBrowserName(navigator.userAgent), id);
   socket.on('connect', function() {
     connectStatus = 'connected';
