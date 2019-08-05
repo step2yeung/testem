@@ -188,6 +188,7 @@ function initSocket(id) {
     this.emit('browser-login', getBrowserName(navigator.userAgent), id);
   });
   socket.on('disconnect', function() {
+    this.emit('browser-disconnected', getBrowserName(navigator.userAgent), id);
     connectStatus = 'disconnected';
     syncConnectStatus();
   });
