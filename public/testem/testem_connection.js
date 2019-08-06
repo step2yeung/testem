@@ -185,6 +185,8 @@ function initSocket(id) {
     syncConnectStatus();
   });
   socket.on('reconnect', function() {
+    console.log('socket reconnecting:');
+    console.log(socket);
     this.emit('browser-relogin', getBrowserName(navigator.userAgent), id);
   });
   socket.on('disconnect', function() {

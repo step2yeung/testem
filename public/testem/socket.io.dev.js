@@ -61,6 +61,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	Error.stackTraceLimit = Infinity;
+
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/**
@@ -2800,8 +2802,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // Handle any error that happens while probing
 	  function onerror (err) {
 	    var error = new Error('probe error: ' + err);
-	    error.transport = transport.name;
-
+			error.transport = transport.name;
+			debug(error.stack);
 	    freezeTransport();
 
 	    debug('probe transport "'+name+'" failed because of error: '+err);
@@ -3141,6 +3143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	Socket.prototype.onClose = function (reason, desc) {
+		debug('socket onClose with reason: "'+reason+'"'+'  and desc:'+desc);
 	  if ('opening' === this.readyState || 'open' === this.readyState || 'closing' === this.readyState) {
 	    debug('socket close with reason: "'+reason+'"');
 	    var self = this;
