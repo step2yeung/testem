@@ -173,7 +173,7 @@ function patchEmitterForWildcard(socket) {
 }
 
 function initSocket(id) {
-  socket = io.connect({ reconnectionDelayMax: 1000, randomizationFactor: 0, transports: ["websocket"], upgrade: false });
+  socket = io.connect({ reconnectionDelayMax: 1000, randomizationFactor: 0 });
   patchEmitterForWildcard(socket);
 
   console.log(`emitting browser-login from url ${window.location.href}`);
